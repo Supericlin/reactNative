@@ -39,13 +39,13 @@ const HomeScreen = () => {
     const date = new Date(item.createdAt);
     const formattedDate = date.toLocaleDateString();
     const formattedTime = date.toLocaleTimeString();
-    items.push(
-    <View style={styles.itemContainer}>
-      <Text style={styles.title}>{item.title}</Text>
-      <Text>{item.description}</Text>
-      <Text>By: {item.user} - Comments: {item.commentCount}</Text>
-      <Text>{formattedDate} {formattedTime}</Text>
-    </View>
+    return(
+      <View key={item._id} style={styles.itemContainer}>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text>{item.description}</Text>
+        <Text>By: {item.user} - Comments: {item.commentCount}</Text>
+        <Text>{formattedDate} {formattedTime}</Text>
+      </View>
     );
   };
 
@@ -55,7 +55,7 @@ const HomeScreen = () => {
       <FlatList 
        data={data}
        renderItem={renderItem}
-       keyExtractor={(item)=>item.id}/>
+       keyExtractor={(item)=>item._id}/>
     </View>
   );
 };
