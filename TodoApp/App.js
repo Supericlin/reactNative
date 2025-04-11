@@ -3,20 +3,34 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-nativ
 import { useNavigation } from '@react-navigation/native';
 
 const App = () => {
-
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigation = useNavigation();
-  
+
   const handleLogin = () => {
     // Navigate to Home screen
-    navigation.navigate("Home");
+    navigation.navigate('Home');
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login Form</Text>
-      <TextInput style={styles.input} placeholder='Email'/>
-      <TextInput style={styles.input} placeholder='Password' secureTextEntry />
-      <TouchableOpacity onPress={handleLogin} style={styles.button}>
+      <Text style={styles.title}>Login</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        value={email}
+        onChangeText={setEmail}
+        keyboardType="email-address"
+        autoCapitalize="none"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+      />
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
     </View>
@@ -28,37 +42,38 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor:'#1b2e06',
+    backgroundColor: '#f5f5f5',
+    padding: 16,
   },
   title: {
     fontSize: 32,
     fontWeight: 'bold',
-    color: '#FFF',
-    marginBottom: 50,
+    marginBottom: 24,
+    color: '#333',
   },
   input: {
     width: '80%',
     height: 50,
-    backgroundColor: '#e7fccf',
-    borderColor: '#4c8708',
+    borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 8,
-    margin: 10,
-    padding: 10,
-  },
-  buttonText: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: '#FFF',
+    marginBottom: 16,
+    paddingHorizontal: 10,
+    backgroundColor: '#fff',
   },
   button: {
     width: '80%',
     height: 50,
-    backgroundColor: '#ed9d2d',
-    borderRadius: 8,
-    padding: 10,
+    backgroundColor: '#007BFF',
+    justifyContent: 'center',
     alignItems: 'center',
-  }
+    borderRadius: 8,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
 });
 
 export default App;
